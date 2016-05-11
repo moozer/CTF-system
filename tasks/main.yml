@@ -4,10 +4,12 @@
 - name: include basesystem
   include: basesystem.yml
   when: include_basesystem
+  become: yes
 
 - name: include ctfd system part
   include: ctfd-system.yml
+  become: yes
 
 - name: include ctfd userspace part
   include: userspace.yml
-  become: no
+  tags: userspace

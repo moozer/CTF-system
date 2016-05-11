@@ -2,13 +2,13 @@
 
 - hosts: all
   user: vagrant
-  become: yes
+  #~ become: yes
 
 
   roles:
   - ctfd-server
 
-  tasks:
+#  tasks:
   #~ - name: handling apt.conf
     #~ template: src=apt.conf dest=/etc/apt/apt.conf
 #~ 

@@ -8,6 +8,4 @@
   apt: name=mongodb state=present default-release=testing
   tags: apt
     
-- name: install npm
-  apt: name=npm state=present default-release=testing
-  tags: apt
+

@@ -1,10 +1,12 @@
 # install relevant packages and configure ctfd
 
-- name: pull CTFd from repo
-  git: repo={{ ctfd_git_repo }}
-       dest=CTFd
-    
+- name: create local config dir
+  file: path={{ ctfd_local }} state=directory mode=0755
+
+- name: create config file
+  template: src=config.js.j2 dest="{{ ctfd_local }}/config.js"
+
 - name: update npm
   shell: npm update >> npmupdate.log
   args:
-    chdir: CTFd
+    chdir: "{{ ctfd_base }}"

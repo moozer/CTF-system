@@ -1,0 +1,31 @@
+{
+    "web" : {
+        "port" : 8900,
+        "document_root" : "./html"
+    },
+    "scores_port" : 8900,
+    "status_port" : 8800,
+    "port" : 6600,
+    "database" : "ctfd",
+    "start" : false,
+    "check_interval" : 2000,
+    "plant_interval" : 30000,
+    "points" : {
+        "deliver" : 1,
+        "capture" : 2,
+        "defend" : 1,
+        "check" : 1
+    },
+    "teams" : [
+{% for team in teams %}
+        { "name" : "{{ team.name }}", "host" : "{{ team.host }}" }{% if not loop.last %},{% endif %}
+        
+{% endfor %}
+    ],
+    "services" : [
+{% for service in services %}
+        { "name" : "{{ service.name }}", "manifest" : "{{ service.manifest }}" }{% if not loop.last %},{% endif %}
+        
+{% endfor %}
+    ]
+}
