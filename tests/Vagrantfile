@@ -10,7 +10,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "moozer/deb8-base"
+  config.vm.box = "deb8-base"
+  config.vm.hostname = "gamemaster"
 
   config.vm.provider :libvirt do |libvirt|
     libvirt.host = ""
@@ -18,8 +19,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     libvirt.memory = 1536
   end
 
-  config.vm.synced_folder ".", "/vagrant", type: "9p"
-  config.vm.synced_folder "shared", "/shared", type: "9p", accessmode: "mapped", owner: 5000
+
+  config.vm.provision "shell", path: "setAptProxy.sh"
+
+#  config.vm.synced_folder ".", "/vagrant", type: "9p"
+#  config.vm.synced_folder "shared", "/shared", type: "9p", accessmode: "mapped", owner: 5000
 
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "test.yml"
