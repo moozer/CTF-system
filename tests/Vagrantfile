@@ -5,32 +5,29 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  # All Vagrant configuration is done here. The most common configuration
-  # options are documented and commented below. For a complete reference,
-  # please see the online documentation at vagrantup.com.
-
-  # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "deb8-base"
-  config.vm.hostname = "gamemaster"
-
+  # provider stuff
   config.vm.provider :libvirt do |libvirt|
     libvirt.host = ""
     libvirt.nested = true
     libvirt.memory = 1536
   end
 
+  servers = ['gameserver', 
+             'gameclient01']
+  config.vm.box = "deb8-base"
 
+  servers.each do |hostname|
+    config.vm.define "#{hostname}" do |node|
+      node.vm.hostname = "#{hostname}"
+    end
+  end
+#  config.vm.hostname = "gamemaster"
+
+
+  # provisioning
   config.vm.provision "shell", path: "setAptProxy.sh"
-
-#  config.vm.synced_folder ".", "/vagrant", type: "9p"
-#  config.vm.synced_folder "shared", "/shared", type: "9p", accessmode: "mapped", owner: 5000
 
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "test.yml"
-#    ansible.inventory_path = "inventory"
-#    ansible.groups = {
-#      "routers" => ["ipsrouter"],
-#      "servers" => ["ipsclient", "ipsserver"]
-#    }
   end
 end
