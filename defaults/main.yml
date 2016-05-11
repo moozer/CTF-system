@@ -1,6 +1,7 @@
 # base system is included to handle proper apt config and some base packages
 # disable if you configure apt elsewhere
 include_basesystem: true
+include_ctfd: true
 
 # git repo to pull ctfd files from
 ctfd_git_repo: https://github.com/moozer/CTFd.git
@@ -21,3 +22,11 @@ services:
       manifest: "{{ ctfd_base }}/services/Bashtard/Manifest.json" }
 
 
+# -- local, i.e. on the ansible machine
+local_temp_dir: tmp
+local_ctfd_dir: "{{ local_temp_dir }}/CTFd"
+
+# -- client, gameclient machines
+# on these you may want to do include_ctfc: false
+include_ctfc: false
+ctfc_base: ctf

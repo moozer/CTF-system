@@ -8,8 +8,10 @@
 
 - name: include ctfd system part
   include: ctfd-system.yml
+  when: include_ctfd
   become: yes
 
 - name: include ctfd userspace part
   include: userspace.yml
+  when: include_ctfd
   tags: userspace

@@ -1,58 +1,33 @@
 # test provisioning corresponding to the Vagrantfile
 
-- hosts: all
+- hosts: gameserver
   user: vagrant
-  #~ become: yes
-
 
   roles:
   - ctfd-server
 
-#  tasks:
-  #~ - name: handling apt.conf
-    #~ template: src=apt.conf dest=/etc/apt/apt.conf
-#~ 
-  #~ - name: setting repos
-    #~ template: src=sources.list dest=/etc/apt/sources.list
-#~ 
-  #~ - name: updating all packages
-    #~ apt: update_cache=yes cache_valid_time=3600
-#~ 
-  #~ - name: install "base" packages
-    #~ apt: name={{ item }} state=present 
-    #~ with_items:
-    #~ - git
-    #~ - ntpdate
-    #~ tags: apt
-#~ 
-  #~ - name: install nodejs
-    #~ apt: name=nodejs state=present default-release=testing
-    #~ tags: apt
-    #~ 
-  #~ - name: install mongodb
-    #~ apt: name=mongodb state=present default-release=testing
-    #~ tags: apt
-    #~ 
-  #~ - name: install npm
-    #~ apt: name=npm state=present default-release=testing
-    #~ tags: apt
-    #~ 
+- hosts: gameclient??
+  user: vagrant
+  
+  roles:
+  - { role: ctfd-server, include_ctfc: true, include_ctfd: false } 
 
-## bug in apt module    
-    #~ apt: name={{ item }} state=present default-release=testing
-    #~ with_items:
-    #~ - nodejs
-    #~ - mongodb
-    #~ - npm
-    #~ tags: apt
 
-  #~ - name: pull CTFd from repo
-    #~ become: no
-    #~ git: repo=https://github.com/moozer/CTFd.git
-         #~ dest=/home/vagrant/CTFd
-    #~ 
-  #~ - name: update npm
-    #~ shell: npm update >> npmupdate.log
-    #~ args:
-      #~ chdir: /home/vagrant/CTFd
-    #~ become: no
+  pre_tasks:
+  - name: create temp directory
+    file: path={{ local_temp_dir }} state=directory
+    connection: local
+
+  - name: pull CTFd locally
+    connection: local
+    git: repo="{{ ctfd_git_repo }}"
+         dest="{{ local_ctfd_dir }}"
+    
+  tasks:
+  - name: create ctf directory
+    file: path={{ctfc_base}} state=directory
+    
+  - name: copy utility scripts
+    copy: src={{item.src}} dest={{item.dest}}
+    with_items:
+    - { src: "{{ local_ctfd_dir }}/scripts/flag_deliver",  dest: "{{ctfc_base}}" }
