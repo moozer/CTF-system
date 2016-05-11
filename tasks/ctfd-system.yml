@@ -1,5 +1,12 @@
 # install packages and config relevant for system wode part of the ctfd server
 
+- name: pull CTFd from repo
+  git: repo="{{ ctfd_git_repo }}"
+       dest="{{ ctfd_base }}"
+        
+- name: change ownership of CTFd directroy
+  file: path={{ ctfd_base }} recurse=true owner={{ ctfd_user }} 
+
 - name: install nodejs
   apt: name=nodejs state=present default-release=testing
   tags: apt
@@ -8,4 +15,7 @@
   apt: name=mongodb state=present default-release=testing
   tags: apt
     
-
+- name: install npm
+  apt: name=npm state=present default-release=testing
+  tags: apt
+    

@@ -16,13 +16,3 @@
   - git
   - ntpdate
 
-- name: pull CTFd from repo
-  git: repo="{{ ctfd_git_repo }}"
-       dest="{{ ctfd_base }}"
-    
-- debug: msg={{ ctfd_user }} 
-    
-- name: change ownershiop of CTFd directroy
-  file: path={{ ctfd_base }} recurse=true owner={{ ctfd_user }} 
-  
-  
