@@ -1,0 +1,13 @@
+# sets up the base systme.
+# the server will run as its own user
+
+- name: include basesystem
+  include: basesystem.yml
+  when: include_basesystem
+
+- name: include ctfd system part
+  include: ctfd-system.yml
+
+- name: include ctfd userspace part
+  include: userspace.yml
+  become: no

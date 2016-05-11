@@ -2,40 +2,41 @@
 
 - hosts: all
   user: vagrant
-  sudo: yes
+  become: yes
 
-#  roles:
-#  - workstation-xfce4
+
+  roles:
+  - ctfd-server
 
   tasks:
-  - name: handling apt.conf
-    copy: src=apt.conf dest=/etc/apt/apt.conf
-
-  - name: setting repos
-    copy: src=sources.list dest=/etc/apt/sources.list
-
-  - name: updating all packages
-    apt: update_cache=yes cache_valid_time=10000
-
-  - name: install "base" packages
-    apt: name={{ item }} state=present 
-    with_items:
-    - git
-    - ntpdate
-    tags: apt
-
-  - name: install nodejs
-    apt: name=nodejs state=present default-release=testing
-    tags: apt
-    
-  - name: install mongodb
-    apt: name=mongodb state=present default-release=testing
-    tags: apt
-    
-  - name: install npm
-    apt: name=npm state=present default-release=testing
-    tags: apt
-    
+  #~ - name: handling apt.conf
+    #~ template: src=apt.conf dest=/etc/apt/apt.conf
+#~ 
+  #~ - name: setting repos
+    #~ template: src=sources.list dest=/etc/apt/sources.list
+#~ 
+  #~ - name: updating all packages
+    #~ apt: update_cache=yes cache_valid_time=3600
+#~ 
+  #~ - name: install "base" packages
+    #~ apt: name={{ item }} state=present 
+    #~ with_items:
+    #~ - git
+    #~ - ntpdate
+    #~ tags: apt
+#~ 
+  #~ - name: install nodejs
+    #~ apt: name=nodejs state=present default-release=testing
+    #~ tags: apt
+    #~ 
+  #~ - name: install mongodb
+    #~ apt: name=mongodb state=present default-release=testing
+    #~ tags: apt
+    #~ 
+  #~ - name: install npm
+    #~ apt: name=npm state=present default-release=testing
+    #~ tags: apt
+    #~ 
 
 ## bug in apt module    
     #~ apt: name={{ item }} state=present default-release=testing
@@ -45,13 +46,13 @@
     #~ - npm
     #~ tags: apt
 
-  - name: pull CTFd from repo
-    become: vagrant
-    git: repo=https://github.com/moozer/CTFd.git
-         dest=/home/vagrant/CTFd
-    
-  - name: update npm
-    shell: npm update >> npmupdate.log
-    args:
-      chdir: /home/vagrant/CTFd
-    become: vagrant
+  #~ - name: pull CTFd from repo
+    #~ become: no
+    #~ git: repo=https://github.com/moozer/CTFd.git
+         #~ dest=/home/vagrant/CTFd
+    #~ 
+  #~ - name: update npm
+    #~ shell: npm update >> npmupdate.log
+    #~ args:
+      #~ chdir: /home/vagrant/CTFd
+    #~ become: no

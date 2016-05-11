@@ -1,0 +1,13 @@
+# install packages and config relevant for system wode part of the ctfd server
+
+- name: install nodejs
+  apt: name=nodejs state=present default-release=testing
+  tags: apt
+    
+- name: install mongodb
+  apt: name=mongodb state=present default-release=testing
+  tags: apt
+    
+- name: install npm
+  apt: name=npm state=present default-release=testing
+  tags: apt
