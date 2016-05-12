@@ -8,4 +8,5 @@
     connection: local
     git: repo="{{ ctfd_git_repo }}"
          dest="{{ local_ctfd_dir }}"
+         update=no
     

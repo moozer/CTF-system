@@ -3,7 +3,8 @@
 - name: pull CTFd from repo
   git: repo="{{ ctfd_git_repo }}"
        dest="{{ ctfd_base }}"
-        
+       update=no
+
 - name: change ownership of CTFd directroy
   file: path={{ ctfd_base }} recurse=true owner={{ ctfd_user }} 
 
