@@ -24,9 +24,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 #  config.vm.hostname = "gamemaster"
 
 
-  # provisioning
-  config.vm.provision "shell", path: "setAptProxy.sh"
-
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "test.yml"
   end

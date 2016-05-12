@@ -2,6 +2,7 @@
 # disable if you configure apt elsewhere
 include_basesystem: true
 include_ctfd: true
+aptproxyserver: configserver01
 
 # git repo to pull ctfd files from
 ctfd_git_repo: https://github.com/moozer/CTFd.git
