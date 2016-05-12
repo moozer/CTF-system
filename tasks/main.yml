@@ -15,3 +15,15 @@
   include: userspace.yml
   when: include_ctfd
   tags: userspace
+
+- name: include ctfc system part
+  include: ctfc-system.yml
+  when: include_ctfc
+  become: yes
+  
+- name: include ctfc userspace part
+  include: ctfc-userspace.yml
+  when: include_ctfc
+  tags: userspace
+
+  

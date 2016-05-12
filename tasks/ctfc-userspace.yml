@@ -1,0 +1,7 @@
+  - name: create ctf directory
+    file: path={{ctfc_base}} state=directory
+    
+  - name: copy utility scripts
+    copy: src={{item.src}} dest={{item.dest}}
+    with_items:
+    - { src: "{{ local_ctfd_dir }}/scripts/flag_deliver",  dest: "{{ctfc_base}}" }

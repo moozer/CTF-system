@@ -13,21 +13,3 @@
   - { role: ctfd-server, include_ctfc: true, include_ctfd: false } 
 
 
-  pre_tasks:
-  - name: create temp directory
-    file: path={{ local_temp_dir }} state=directory
-    connection: local
-
-  - name: pull CTFd locally
-    connection: local
-    git: repo="{{ ctfd_git_repo }}"
-         dest="{{ local_ctfd_dir }}"
-    
-  tasks:
-  - name: create ctf directory
-    file: path={{ctfc_base}} state=directory
-    
-  - name: copy utility scripts
-    copy: src={{item.src}} dest={{item.dest}}
-    with_items:
-    - { src: "{{ local_ctfd_dir }}/scripts/flag_deliver",  dest: "{{ctfc_base}}" }
