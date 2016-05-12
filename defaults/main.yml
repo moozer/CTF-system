@@ -42,4 +42,5 @@ bashtard:
   src_path: "{{ local_ctfd_dir }}/services/Bashtard/src"
   dest_path: "{{ ctfc_service_dir }}"
   filename: bashtard.sh
+  port: 9898
 

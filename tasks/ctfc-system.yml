@@ -11,3 +11,13 @@
   with_items: "{{ services_enabled }}"
   tags: services
   notify: restart xinetd
+
+- name: update services list
+  lineinfile:
+    dest=/etc/services
+    line="{{ item.name }}   {{ item.port }}/tcp"
+    state=present
+    insertafter=EOF
+  with_items: "{{ services_enabled }}"
+  tags: services
+  notify: restart xinetd
