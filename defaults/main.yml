@@ -15,8 +15,9 @@ ctfd_local: CTFd_local
 # if you do "become: yes" in the playbook, this will be root, so it must be set manually.
 ctfd_user: "{{ ansible_user_id }}"
 
+# this must match the clients...
 teams:
-  - { name: "hometeam", host: "localhost" }
+  - { name: "hometeam", host: "gameclient01" }
 
 services:
   - { name: "bashtard",
