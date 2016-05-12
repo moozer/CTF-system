@@ -30,4 +30,16 @@ local_ctfd_dir: "{{ local_temp_dir }}/CTFd"
 # -- client, gameclient machines
 # on these you may want to do include_ctfc: false
 include_ctfc: false
-ctfc_base: ctf
+ctfc_base: scripts
+ctfc_service_dir: services
+
+services_enabled:
+- "{{ bashtard }}"
+
+# service definitions
+bashtard: 
+  name: bashtard
+  src_path: "{{ local_ctfd_dir }}/services/Bashtard/src"
+  dest_path: "{{ ctfc_service_dir }}"
+  filename: bashtard.sh
+

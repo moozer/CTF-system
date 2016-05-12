@@ -1,0 +1,10 @@
+service {{ item.name }}
+{
+    disable         = no
+    socket_type     = stream
+    protocol        = tcp
+    wait            = no
+    user            = root
+    server          = /bin/bash
+    server_args     = {{ item.dest_path }}/{{ item.filename }}
+}

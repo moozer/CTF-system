@@ -1,3 +1,13 @@
 # system tasks for the game clients
 
 
+- name: install packages need by services
+  apt: name={{ item }} state=present 
+  with_items:
+  - xinetd
+
+- name: add xinetd services
+  template: src=xinetd-services.j2 dest=/etc/xinetd.d/{{item.name}}
+  with_items: "{{ services_enabled }}"
+  tags: services
+  notify: restart xinetd
