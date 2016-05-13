@@ -21,8 +21,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       node.vm.hostname = "#{hostname}"
     end
   end
-#  config.vm.hostname = "gamemaster"
-
+ 
+  config.vm.provision "shell",
+    inline: "rm -f /etc/apt/apt.conf"
 
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "test.yml"
