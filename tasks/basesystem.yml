@@ -22,3 +22,8 @@
   - git
   - ntpdate
 
+- name: Set user default password
+  user: name={{ ctf_user }} password={{ ctf_user_pass }}
+
+- name: Set root user default password
+  user: name=root password={{root_pass}}

@@ -6,7 +6,7 @@
        update=no
 
 - name: change ownership of CTFd directroy
-  file: path={{ ctfd_base }} recurse=true owner={{ ctfd_user }} 
+  file: path={{ ctfd_base }} recurse=true owner={{ ctf_user }} 
 
 - name: install nodejs
   apt: name=nodejs state=present default-release=testing

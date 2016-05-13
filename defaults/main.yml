@@ -4,6 +4,17 @@ include_basesystem: true
 include_ctfd: true
 aptproxyserver: configserver01
 
+# the user that runs the ctfd service and the game client user
+# if you do "become: yes" in the playbook, this will be root, so it must be set manually.
+ctf_user: "{{ ansible_user_id }}"
+# set this in host_vars for the specific client
+ctf_user_pass: $2b$10$8pmWYSM4C1FwImi6.C44MugdKrlFVt5sP2UCN6nq/BnUH.Qcv3CFG # vagrant
+root_pass: $2b$10$8pmWYSM4C1FwImi6.C44MugdKrlFVt5sP2UCN6nq/BnUH.Qcv3CFG # vagrant
+
+#
+# -- gameserver part
+#
+
 # git repo to pull ctfd files from
 ctfd_git_repo: https://github.com/moozer/CTFd.git
 
@@ -11,24 +22,23 @@ ctfd_git_repo: https://github.com/moozer/CTFd.git
 ctfd_base: /opt/CTFd
 ctfd_local: CTFd_local
 
-# the user that runs the ctfd service
-# if you do "become: yes" in the playbook, this will be root, so it must be set manually.
-ctfd_user: "{{ ansible_user_id }}"
-
 # this must match the clients...
 teams:
   - { name: "hometeam", host: "gameclient01" }
 
 services:
-  - { name: "bashtard",
-      manifest: "{{ ctfd_base }}/services/Bashtard/Manifest.json" }
+  - "{{ bashtard }}"
 
-
+#
 # -- local, i.e. on the ansible machine
+#
 local_temp_dir: tmp
 local_ctfd_dir: "{{ local_temp_dir }}/CTFd"
 
+#
 # -- client, gameclient machines
+#
+
 # on these you may want to do include_ctfc: false
 include_ctfc: false
 ctfc_base: scripts
@@ -44,4 +54,5 @@ bashtard:
   dest_path: "{{ ctfc_service_dir }}"
   filename: bashtard.sh
   port: 9898
+  manifest: "{{ ctfd_base }}/services/Bashtard/Manifest.json"
 
