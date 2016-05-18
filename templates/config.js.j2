@@ -8,8 +8,8 @@
     "port" : 6600,
     "database" : "ctfd",
     "start" : false,
-    "check_interval" : 2000,
-    "plant_interval" : 30000,
+    "check_interval" : {{ ctfd_check_interval }},
+    "plant_interval" : {{ ctfd_plant_interval }},
     "points" : {
         "deliver" : 1,
         "capture" : 2,

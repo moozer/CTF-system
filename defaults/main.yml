@@ -22,6 +22,10 @@ ctfd_git_repo: https://github.com/moozer/CTFd.git
 ctfd_base: /opt/CTFd
 ctfd_local: CTFd_local
 
+# check and plant intervals in ms
+ctfd_check_interval: 10000 
+ctfd_plant_interval: 60000
+
 # this must match the clients...
 teams:
   - { name: "hometeam", host: "gameclient01" }
