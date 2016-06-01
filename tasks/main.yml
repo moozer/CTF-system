@@ -5,6 +5,7 @@
   include: basesystem.yml
   when: include_basesystem
   become: yes
+  tags: basesystem
 
 - name: include ctfd system part
   include: ctfd-system.yml

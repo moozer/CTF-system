@@ -2,10 +2,14 @@
 # disable if you already have a "common" role for your environment
 
 - name: check for aptproxy availability
-  shell: ping -c 1 "{{ aptproxyserver }}"
-  register: aptproxy_not_available
+  command: ping -c 1 "{{ aptproxyserver }}"
+  register: ping_aptproxy
   changed_when: false
   failed_when: false
+  always_run: yes
+
+- name: creating aptproxy boolean
+  set_fact: aptproxy_available={{ping_aptproxy.rc == 0}} 
 
 - name: handling apt.conf
   template: src=apt.conf dest=/etc/apt/apt.conf
