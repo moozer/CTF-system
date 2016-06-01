@@ -11,6 +11,9 @@ ctf_user: "{{ ansible_user_id }}"
 ctf_user_pass: $2b$10$8pmWYSM4C1FwImi6.C44MugdKrlFVt5sP2UCN6nq/BnUH.Qcv3CFG # vagrant
 root_pass: $2b$10$8pmWYSM4C1FwImi6.C44MugdKrlFVt5sP2UCN6nq/BnUH.Qcv3CFG # vagrant
 
+# do we run the sanity check tests on install?
+run_tests: false
+
 #
 # -- gameserver part
 #
@@ -45,18 +48,18 @@ local_ctfd_dir: "{{ local_temp_dir }}/CTFd"
 
 # on these you may want to do include_ctfc: false
 include_ctfc: false
-ctfc_base: scripts
-ctfc_service_dir: services
+ctfc_service_dir: /opt/services
+ctfc_base: "{{ctfc_service_dir }}"
 
 services_enabled:
 - "{{ bashtard }}"
 
 # service definitions
-bashtard: 
-  name: bashtard
-  src_path: "{{ local_ctfd_dir }}/services/Bashtard/src"
-  dest_path: "{{ ctfc_service_dir }}"
-  filename: bashtard.sh
-  port: 9898
-  manifest: "{{ ctfd_base }}/services/Bashtard/Manifest.json"
-
+#~ bashtard: 
+  #~ name: bashtard
+  #~ src_path: "{{ local_ctfd_dir }}/services/Bashtard/src"
+  #~ dest_path: "{{ ctfc_service_dir }}"
+  #~ filename: bashtard.sh
+  #~ port: 9898
+  #~ manifest: "{{ ctfd_base }}/services/Bashtard/Manifest.json"
+#~ 

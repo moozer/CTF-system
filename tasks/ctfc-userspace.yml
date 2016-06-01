@@ -6,15 +6,15 @@
 - name: copy utility scripts
   copy: src={{item.src}} dest={{item.dest}}
   with_items:
-  - { src: "{{ local_ctfd_dir }}/scripts/flag_deliver",  dest: "{{ctfc_base}}" }
+  - { src: "{{ local_ctfd_dir }}/scripts/flag_deliver",  dest: "{{ ansible_env.HOME}}" }
 
 # bashtard
-- name: create destination directories
-  file: path={{ item.dest_path }} state=directory recurse=yes 
-  with_items: "{{ services_enabled }}"
-  tags: services  
-
-- name: include services
-  copy: src={{item.src_path}}/{{ item.filename }} dest={{item.dest_path}}/{{ item.filename }}
-  with_items: "{{ services_enabled }}"
-  tags: services
+#~ - name: create destination directories
+  #~ file: path={{ item.dest_path }} state=directory recurse=yes 
+  #~ with_items: "{{ services_enabled }}"
+  #~ tags: services  
+#~ 
+#~ - name: include services
+  #~ copy: src={{item.src_path}}/{{ item.filename }} dest={{item.dest_path}}/{{ item.filename }}
+  #~ with_items: "{{ services_enabled }}"
+  #~ tags: services

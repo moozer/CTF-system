@@ -6,5 +6,5 @@ service {{ item.name }}
     wait            = no
     user            = root
     server          = /bin/bash
-    server_args     = {{ ansible_env.HOME}}/{{ item.dest_path }}/{{ item.filename }}
+    server_args     = {{ctfc_service_dir}}/{{ item.name }}/{{ item.script }}
 }
