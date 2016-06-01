@@ -1,0 +1,37 @@
+
+#~ - name: install packages
+  #~ apt: name={{ item }} state=present default_release=testing
+  #~ with_items:
+  #~ - apache2
+  #~ - xinetd
+  #~ - libapache2-mod-php
+#~ 
+#~ - name: install rc.local
+  #~ template: src=rc.local.j2 dest=/etc/rc.local 
+            #~ mode=755 owner=root group=root
+  #~ notify: run rc.local
+            #~ 
+#~ - name: install apache default site
+  #~ template: src=000-default.conf.j2 dest=/etc/apache2/sites-available/000-default.conf
+            #~ mode=755 owner=root group=root
+  #~ notify: restart apache
+#~ 
+#~ - name: diable ipv6 for apache
+  #~ template: src=templates/port.conf.j2 dest=/etc/apache2/port.conf
+  #~ notify: restart apache  
+            
+- name: include bashtard
+  include: bashtard.yml
+  when: "{{ Bashtard.enable }}"
+
+- name: include RabbitShare
+  include: rabbitshare.yml
+  when: "{{ RabbitShare.enable }}"
+
+- name: include TicTacToe
+  include: tictactoe.yml
+  when: "{{ TicTacToe.enable }}"
+
+- name: include PythonOnPills
+  include: pythononpills.yml
+  when: "{{ PythonOnPills.enable }}"

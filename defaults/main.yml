@@ -14,6 +14,8 @@ root_pass: $2b$10$8pmWYSM4C1FwImi6.C44MugdKrlFVt5sP2UCN6nq/BnUH.Qcv3CFG # vagran
 # do we run the sanity check tests on install?
 run_tests: false
 
+
+ctf_gameserver_hostname: gameserver
 #
 # -- gameserver part
 #

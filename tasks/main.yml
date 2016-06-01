@@ -5,7 +5,7 @@
   include_vars: "{{ item }}"
   with_items:
   - defaults/services.yml
-
+  tags: always
 
 - name: include basesystem
   include: basesystem.yml

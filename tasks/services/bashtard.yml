@@ -26,3 +26,15 @@
   tags: services
   notify: restart xinetd
 
+- name: tests service (local)
+  command: "nc -v -z -w 1 localhost {{ Bashtard.port }}"
+  changed_when: false
+  when: run_tests
+  tags: tests
+  
+- name: tests service (delegated)
+  command: "nc -v -z -w 1 {{ ansible_default_ipv4.address }} {{ Bashtard.port }}"
+  delegate_to: "{{ ctf_gameserver_hostname }}"
+  changed_when: false
+  when: run_tests
+  tags: tests
