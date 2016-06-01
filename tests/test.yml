@@ -8,6 +8,9 @@
 
 - hosts: gameclient??
   user: vagrant
+
+  vars:
+    run_tests: true
   
   roles:
   - { role: ctfd-server, include_ctfc: true, include_ctfd: false } 

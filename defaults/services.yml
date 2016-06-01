@@ -1,0 +1,53 @@
+# service definitions
+
+Bashtard: 
+  name: Bashtard
+  manifest: "{{ ctfd_base }}/services/Bashtard/Manifest.json"
+  enable: true
+  script: bashtard.sh
+  port: 9898
+
+PythonOnPills: 
+  name: PythonOnPills
+  manifest: "{{ ctfd_base }}/services/PythonOnPills/Manifest.json"
+  enable: false
+  
+Phasebook: 
+  name: Phasebook
+  manifest: "{{ ctfd_base }}/services/Phasebook/Manifest.json"
+  enable: false
+
+Barbershop: 
+  name: Barbershop
+  manifest: "{{ ctfd_base }}/services/Barbershop/Manifest.json"
+  enable: false
+
+TicTacToe: 
+  name: TicTacToe
+  manifest: "{{ ctfd_base }}/services/TicTacToe/Manifest.json"
+  enable: false
+
+RabbitShare: 
+  name: RabbitShare
+  manifest: "{{ ctfd_base }}/services/RabbitShare/Manifest.json"
+  enable: false
+
+MyStatus: 
+  name: MyStatus
+  manifest: "{{ ctfd_base }}/services/MyStatus/Manifest.json"
+  enable: false
+
+LeetPhorum: 
+  name: LeetPhorum
+  manifest: "{{ ctfd_base }}/services/LeetPhorum/Manifest.json"
+  enable: false
+
+Wizard: 
+  name: Wizard
+  manifest: "{{ ctfd_base }}/services/Wizard/Manifest.json"
+  enable: false
+
+GraphicusMaximus: 
+  name: GraphicusMaximus
+  manifest: "{{ ctfd_base }}/services/GraphicusMaximus/Manifest.json"
+  enable: false

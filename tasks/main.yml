@@ -1,6 +1,12 @@
 # sets up the base systme.
 # the server will run as its own user
 
+- name: include extra vars
+  include_vars: "{{ item }}"
+  with_items:
+  - defaults/services.yml
+
+
 - name: include basesystem
   include: basesystem.yml
   when: include_basesystem
@@ -32,4 +38,8 @@
   when: include_ctfc
   tags: userspace
 
+- name: include tests
+  include: tests.yml
+  when: run_tests
+  tags: tests
   
