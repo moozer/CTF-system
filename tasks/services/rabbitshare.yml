@@ -12,3 +12,10 @@
 - name: change ownership
   file: path="{{ ctfc_service_dir }}/RabbitShare"
         owner=www-data group=www-data recurse=true
+
+- name: tests service (delegated)
+  command: "curl -s http://{{ ansible_default_ipv4.address }}/RabbitShare/"
+  delegate_to: "{{ ctf_gameserver_hostname }}"
+  changed_when: false
+  when: run_tests
+  tags: tests
