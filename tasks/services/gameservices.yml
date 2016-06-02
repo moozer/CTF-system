@@ -19,6 +19,11 @@
 #~ - name: diable ipv6 for apache
   #~ template: src=templates/port.conf.j2 dest=/etc/apache2/port.conf
   #~ notify: restart apache  
+
+# comman config for web stuff
+- name: include apache config
+  include: apache.yml
+  when: "{{ RabbitShare.enable }}"
             
 - name: include bashtard
   include: bashtard.yml

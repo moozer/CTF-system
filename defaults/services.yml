@@ -30,7 +30,7 @@ TicTacToe:
 RabbitShare: 
   name: RabbitShare
   manifest: "{{ ctfd_base }}/services/RabbitShare/Manifest.json"
-  enable: false
+  enable: true
 
 MyStatus: 
   name: MyStatus
