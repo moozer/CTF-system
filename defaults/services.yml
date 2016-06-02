@@ -10,7 +10,7 @@ Bashtard:
 PythonOnPills: 
   name: PythonOnPills
   manifest: "{{ ctfd_base }}/services/PythonOnPills/Manifest.json"
-  enable: false
+  enable: true
   
 Phasebook: 
   name: Phasebook
