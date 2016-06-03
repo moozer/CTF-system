@@ -9,9 +9,3 @@
 - name: copy www files 
   copy: src="{{local_ctfd_dir}}/services/PythonOnPills/www" dest="{{ctfc_service_dir}}/PythonOnPills"
 
-- name: tests service (delegated)
-  command: "curl -s http://{{ ansible_default_ipv4.address }}:2222"
-  delegate_to: "{{ ctf_gameserver_hostname }}"
-  changed_when: false
-  when: run_tests
-  tags: tests

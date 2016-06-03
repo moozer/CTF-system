@@ -15,4 +15,7 @@
   roles:
   - { role: ctfd-server, include_ctfc: true, include_ctfd: false } 
 
-
+  post_tasks:
+  - name: do tests
+    include: tests.yml
+    when: run_tests
