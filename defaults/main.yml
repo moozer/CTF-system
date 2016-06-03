@@ -6,8 +6,8 @@ aptproxyserver: configserver01
 
 # the user that runs the ctfd service and the game client user
 # if you do "become: yes" in the playbook, this will be root, so it must be set manually.
-ctf_user: "{{ ansible_user_id }}"
 # set this in host_vars for the specific client
+ctf_user: "vagrant"
 ctf_user_pass: $2b$10$8pmWYSM4C1FwImi6.C44MugdKrlFVt5sP2UCN6nq/BnUH.Qcv3CFG # vagrant
 root_pass: $2b$10$8pmWYSM4C1FwImi6.C44MugdKrlFVt5sP2UCN6nq/BnUH.Qcv3CFG # vagrant
 
