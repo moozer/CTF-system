@@ -36,7 +36,9 @@ teams:
   - { name: "hometeam", host: "gameclient01" }
 
 services:
-  - "{{ bashtard }}"
+  - "{{ Bashtard }}"
+  - "{{ PythonOnPills }}"
+  - "{{ RabbitShare }}"
 
 #
 # -- local, i.e. on the ansible machine
