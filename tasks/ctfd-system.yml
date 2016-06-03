@@ -19,4 +19,10 @@
 - name: install npm
   apt: name=npm state=present default-release=testing
   tags: apt
-    
+
+# needed to check services    
+- name: install support packages
+  apt: name={{item}} state=present
+  with_items:
+  - lynx
+  - curl
