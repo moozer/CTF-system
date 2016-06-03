@@ -38,8 +38,3 @@
   when: include_ctfc
   tags: userspace
 
-- name: include tests
-  include: tests.yml
-  when: run_tests
-  tags: tests
-  

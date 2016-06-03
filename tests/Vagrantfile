@@ -23,22 +23,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
  
   config.vm.synced_folder ".", "/vagrant", disabled: true
-
-  $script = <<SCRIPT
-    PROXY="configserver01"
-    if ping $PROXY -c 1 > /dev/null;
-    then 
-      echo using proxy;
-      echo Acquire::http::Proxy "http://$PROXY:9999"
-    else 
-      rm -f /etc/apt/apt.conf
-      rm -f /etc/apt/apt.conf.d/99proxy
-    fi
-SCRIPT
-
-  config.vm.provision "shell", inline: $script
-
-#  config.vm.provision "ansible" do |ansible|
-#    ansible.playbook = "test.yml"
-#  end
+  
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "test.yml"
+  end
 end
