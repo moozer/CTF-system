@@ -4,9 +4,6 @@
   changed_when: false
   failed_when: false
   tags: basesystem
-  
-- debug: var=ping_out
-  tags: basesystem
 
 - name: install apt proxy
   template: src=99proxy.j2 dest=/etc/apt/apt.conf.d/99proxy  mode=0755
