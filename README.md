@@ -22,3 +22,14 @@ Currently:
 
 * Currently: RabbitShare, PythonOnPills and Bashtard may be installed using this role
 
+
+When it is installed
+
+Start the system by running
+
+    cd ~/CTFd_local
+    nodejs /opt/CTFd/bin/ctfd.js config.js
+    
+to start the game
+
+    daemon.start()
