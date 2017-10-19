@@ -9,7 +9,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provider :libvirt do |libvirt|
     libvirt.host = ""
     libvirt.nested = true
-    libvirt.memory = 1536
+    libvirt.memory = 768
   end
 
   servers = ['gameserver', 
