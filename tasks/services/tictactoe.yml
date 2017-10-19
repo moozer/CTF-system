@@ -1,0 +1,38 @@
+- name: install packages
+  apt: name={{ item }} state=present
+  with_items:
+  - ruby
+  - screen
+
+- name: copy files
+  copy: src="{{local_ctfd_dir}}/services/TicTacToe/src/" dest="{{ctfc_service_dir}}/TicTacToe"
+  
+- name: add user
+  user: name=tictactoe shell=/usr/sbin/nologin
+  
+- name: set executable
+  file: path="{{ ctfc_service_dir }}/TicTacToe/{{item}}"
+        mode=0755
+  with_items:
+  - tttd.rb
+  - run.sh
+  - userd.rb
+  - helper/user.rb
+
+- name: create data dir
+  file: state=directory path="{{ ctfc_service_dir }}/TicTacToe/{{ item }}"
+        owner=tictactoe group=tictactoe
+  with_items:
+  - tttd_in
+  - user_in
+
+- name: install gems
+  gem: name={{item}} state=present
+  with_items:
+  - ruby-inotify
+
+- name: change ownership
+  file: path="{{ ctfc_service_dir }}/TicTacToe"
+        owner=tictactoe group=tictactoe recurse=true
+
+- debug: msg="it fails (also) due to some ruby-inotify issue"
