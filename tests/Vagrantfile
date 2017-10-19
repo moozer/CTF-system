@@ -12,18 +12,19 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     libvirt.memory = 768
   end
 
-  servers = ['gameserver', 
+  servers = ['gameserver',
              'gameclient01']
-  config.vm.box = "deb8-base"
+  #config.vm.box = "deb8-base"
+  config.vm.box = "debian/jessie64"
 
   servers.each do |hostname|
     config.vm.define "#{hostname}" do |node|
       node.vm.hostname = "#{hostname}"
     end
   end
- 
+
   config.vm.synced_folder ".", "/vagrant", disabled: true
-  
+
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "test.yml"
   end

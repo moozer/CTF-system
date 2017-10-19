@@ -4,6 +4,12 @@
   user: vagrant
   become: yes
 
+  pre_tasks:
+  - name: install packages
+    apt:
+      name: ca-certificates
+      state: present
+
   roles:
   - ctfd-server
 
@@ -13,14 +19,14 @@
 
   vars:
     run_tests: true
-  
+
   roles:
   - basesystem
-  - { role: ctfd-server, include_ctfc: true, include_ctfd: false } 
+  - { role: ctfd-server, include_ctfc: true, include_ctfd: false }
 
   #~ post_tasks:
   #~ - meta: flush_handlers
-  #~ 
+  #~
   #~ - name: do tests
     #~ include: tests.yml
     #~ when: run_tests
