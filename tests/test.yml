@@ -4,13 +4,8 @@
   user: vagrant
   become: yes
 
-  pre_tasks:
-  - name: install packages
-    apt:
-      name: ca-certificates
-      state: present
-
   roles:
+  - basesystem
   - ctfd-server
 
 - hosts: gameclient??
