@@ -1,0 +1,16 @@
+# install apache related stuff
+
+- name: install packages
+  apt: name={{ item }} state=present default_release=testing
+  with_items:
+  - apache2
+  - libapache2-mod-php
+
+- name: install apache default site
+  template: src=000-default.conf.j2 dest=/etc/apache2/sites-available/000-default.conf
+            mode=755 owner=root group=root
+  notify: restart apache
+
+- name: diable ipv6 for apache
+  template: src=templates/port.conf.j2 dest=/etc/apache2/port.conf
+  notify: restart apache

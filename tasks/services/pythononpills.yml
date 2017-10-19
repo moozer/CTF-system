@@ -1,0 +1,11 @@
+- name: create dir
+  file: state=directory path="{{ctfc_service_dir}}/PythonOnPills"
+
+- name: copy files
+  copy: src="{{local_ctfd_dir}}/services/PythonOnPills/{{item}}" dest="{{ctfc_service_dir}}/PythonOnPills"
+  with_items:
+  - pills.py
+
+- name: copy www files 
+  copy: src="{{local_ctfd_dir}}/services/PythonOnPills/www" dest="{{ctfc_service_dir}}/PythonOnPills"
+

@@ -9,7 +9,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provider :libvirt do |libvirt|
     libvirt.host = ""
     libvirt.nested = true
-    libvirt.memory = 1536
+    libvirt.memory = 768
   end
 
   servers = ['gameserver', 
@@ -23,11 +23,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
  
   config.vm.synced_folder ".", "/vagrant", disabled: true
- 
-  config.vm.provision "shell",
-    inline: "rm -f /etc/apt/apt.conf"
-
+  
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "test.yml"
+  end
+
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "runTests.yml"
   end
 end

@@ -1,10 +1,17 @@
 # sets up the base systme.
 # the server will run as its own user
 
+- name: include extra vars
+  include_vars: "{{ item }}"
+  with_items:
+  - defaults/services.yml
+  tags: always
+
 - name: include basesystem
   include: basesystem.yml
   when: include_basesystem
   become: yes
+  tags: basesystem
 
 - name: include ctfd system part
   include: ctfd-system.yml
@@ -31,4 +38,3 @@
   when: include_ctfc
   tags: userspace
 
-  

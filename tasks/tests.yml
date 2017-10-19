@@ -1,0 +1,28 @@
+# tests
+
+- name: tests BashTard (local)
+  command: "nc -v -z -w 1 localhost {{ Bashtard.port }}"
+  changed_when: false
+  when: Bashtard.enable
+  tags: tests
+  
+- name: tests BashTard (delegated)
+  command: "nc -v -z -w 1 {{ ansible_default_ipv4.address }} {{ Bashtard.port }}"
+  delegate_to: "{{ ctf_gameserver_hostname }}"
+  changed_when: false
+  when: Bashtard.enable
+  tags: tests
+
+- name: tests RabbitShare (delegated)
+  command: "curl -s http://{{ ansible_default_ipv4.address }}/RabbitShare/"
+  delegate_to: "{{ ctf_gameserver_hostname }}"
+  changed_when: false
+  when: RabbitShare.enable
+  tags: tests
+
+- name: tests PythonOnPills (delegated)
+  command: "curl -s http://{{ ansible_default_ipv4.address }}:2222"
+  delegate_to: "{{ ctf_gameserver_hostname }}"
+  changed_when: false
+  when: PythonOnPills.enable
+  tags: tests
