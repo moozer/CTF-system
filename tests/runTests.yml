@@ -7,4 +7,10 @@
   - roles/ctfd-server/defaults/services.yml
     
   tasks:
+  - debug: var=hostvars[ctf_gameserver_hostname].ansible_ssh_host
+
+  
+  - name: wait for game server to be available
+    wait_for: host={{ hostvars[ctf_gameserver_hostname].ansible_ssh_host }}
+
   - include: ../tasks/tests.yml
