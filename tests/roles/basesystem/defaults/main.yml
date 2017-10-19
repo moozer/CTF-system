@@ -1,1 +1,2 @@
 #apt_proxy: "configserver01"
+apt_proxy: ""
