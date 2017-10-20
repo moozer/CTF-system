@@ -2,14 +2,6 @@
 # disable if you already have a "common" role for your environment
 
 
-
-- name: install packages
-  apt: name={{ item }} state=present
-  with_items:
-  - git
-  - ntpdate
-  - ca-certificates
-
 - name: Set user default password
   user: name={{ ctf_user }} password={{ ctf_user_pass }}
 

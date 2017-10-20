@@ -12,6 +12,10 @@
   become: yes
   tags: system
 
+- include: install_packages.yml
+  become: yes
+  tags: system
+
 - name: include ctfd system part
   include: ctfd-system.yml
   when: include_ctfd
