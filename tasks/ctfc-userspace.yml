@@ -9,8 +9,6 @@
 #   with_items:
 #   - { src: "{{ local_ctfd_dir }}/scripts/flag_deliver",  dest: "{{ ansible_env.HOME}}" }
 
-- debug: var=ansible_env
-
 - name: copy deliver_flag script
   copy:
     src: "{{ local_ctfd_dir }}/scripts/flag_deliver"
