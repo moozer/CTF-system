@@ -18,3 +18,11 @@
   apt:
     update_cache: yes
     cache_valid_time: 3600
+
+- name: setting repos
+  template: src=sources.list dest=/etc/apt/sources.list
+  register: apt_repo_update
+
+- name: updating all packages
+  apt: update_cache=yes
+  when: apt_repo_update.changed

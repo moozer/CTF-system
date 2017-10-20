@@ -2,13 +2,6 @@
 # disable if you already have a "common" role for your environment
 
 
-- name: setting repos
-  template: src=sources.list dest=/etc/apt/sources.list
-  register: apt_repo_update
-
-- name: updating all packages
-  apt: update_cache=yes
-  when: apt_repo_update.changed
 
 - name: install "base" packages
   apt: name={{ item }} state=present
