@@ -2,28 +2,28 @@
 # comman config
 - name: include apache config
   include: apache.yml
-  when: "{{ RabbitShare.enable }}"
+  when: RabbitShare.enable
 
 - name: install rc.local
-  template: src=rc.local.j2 dest=/etc/rc.local 
+  template: src=rc.local.j2 dest=/etc/rc.local
             mode=755 owner=root group=root
   notify: run rc.local
-  when: "{{ PythonOnPills.enable }}"
+  when: PythonOnPills.enable
 
 
-# services            
+# services
 - name: include bashtard
   include: bashtard.yml
-  when: "{{ Bashtard.enable }}"
+  when: Bashtard.enable
 
 - name: include RabbitShare
   include: rabbitshare.yml
-  when: "{{ RabbitShare.enable }}"
+  when: RabbitShare.enable
 
 - name: include TicTacToe
   include: tictactoe.yml
-  when: "{{ TicTacToe.enable }}"
+  when: TicTacToe.enable
 
 - name: include PythonOnPills
   include: pythononpills.yml
-  when: "{{ PythonOnPills.enable }}"
+  when: PythonOnPills.enable
