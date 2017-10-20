@@ -4,10 +4,17 @@
 - name: create ctf directory
   file: path={{ctfc_base}} state=directory
 
-- name: copy utility scripts
-  copy: src={{item.src}} dest={{item.dest}}
-  with_items:
-  - { src: "{{ local_ctfd_dir }}/scripts/flag_deliver",  dest: "{{ ansible_env.HOME}}" }
+# - name: copy utility scripts
+#   copy: src={{item.src}} dest={{item.dest}}
+#   with_items:
+#   - { src: "{{ local_ctfd_dir }}/scripts/flag_deliver",  dest: "{{ ansible_env.HOME}}" }
+
+- debug: var=ansible_env
+
+- name: copy deliver_flag script
+  copy:
+    src: "{{ local_ctfd_dir }}/scripts/flag_deliver"
+    dest: "{{ ansible_env.HOME}}"
 
 # bashtard
 #~ - name: create destination directories
