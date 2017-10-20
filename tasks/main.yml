@@ -8,15 +8,15 @@
   tags: always
 
 - name: include basesystem
-  include: basesystem.yml
-  when: include_basesystem
+  include: users.yml
   become: yes
-  tags: basesystem
+  tags: system
 
 - name: include ctfd system part
   include: ctfd-system.yml
   when: include_ctfd
   become: yes
+  tags: system
 
 - name: include ctfd userspace part
   include: userspace.yml
@@ -27,14 +27,15 @@
   include: ctfc-system.yml
   when: include_ctfc
   become: yes
-  
+  tags: system
+
 - name: include ctfc local part
   include: ctfc-local.yml
   become: no
   when: include_ctfc
-  
+
 - name: include ctfc userspace part
   include: ctfc-userspace.yml
   when: include_ctfc
+  become: no
   tags: userspace
-
