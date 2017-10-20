@@ -27,6 +27,7 @@
 
 - name: include ctfc local part
   include: ctfc-local.yml
+  when: include_ctfd
   become: no
 
 - name: install ctf client and server - userspace
