@@ -15,8 +15,9 @@
   become: yes
   tags: system
 
-- name: install ctf client and server - system
-  block:
+- block:
+  - debug: msg="install ctf client and server - system"
+
   - include: ctfd-system.yml
     when: include_ctfd
 
@@ -30,8 +31,9 @@
   when: include_ctfd
   become: no
 
-- name: install ctf client and server - userspace
-  block:
+- block:
+  - debug: msg="install ctf client and server - userspace"
+
   - include: ctfd-userspace.yml
     when: include_ctfd
 
