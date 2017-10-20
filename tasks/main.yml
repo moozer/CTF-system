@@ -15,8 +15,27 @@
   become: yes
   tags: system
 
-- include: install_ctfd.yml
-  when: include_ctfd
+- name: install ctf client and server - system
+  block:
+  - include: ctfd-system.yml
+    when: include_ctfd
 
-- include: install_ctfc.yml
-  when: include_ctfc
+  - include: ctfc-system.yml
+    when: include_ctfc
+  become: yes
+  tags: system
+
+- name: include ctfc local part
+  include: ctfc-local.yml
+  become: no
+
+- name: install ctf client and server - userspace
+  block:
+  - include: ctfd-userspace.yml
+    when: include_ctfd
+
+  - include: ctfc-userspace.yml
+    when: include_ctfc
+  become_user: "{{ ctf_user }}"
+  become: no
+  tags: userspace
