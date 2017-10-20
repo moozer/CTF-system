@@ -1,4 +1,5 @@
 # install relevant packages and configure ctfd
+- debug: msg="ctfd-userspace"
 
 - name: create local config dir
   file: path={{ ctfd_local }} state=directory mode=0755

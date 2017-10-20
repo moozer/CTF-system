@@ -1,4 +1,5 @@
 # install files and other userspace config for use with the services.
+- debug: msg="ctfc-userspace"
 
 - name: create ctf directory
   file: path={{ctfc_base}} state=directory
@@ -10,10 +11,10 @@
 
 # bashtard
 #~ - name: create destination directories
-  #~ file: path={{ item.dest_path }} state=directory recurse=yes 
+  #~ file: path={{ item.dest_path }} state=directory recurse=yes
   #~ with_items: "{{ services_enabled }}"
-  #~ tags: services  
-#~ 
+  #~ tags: services
+#~
 #~ - name: include services
   #~ copy: src={{item.src_path}}/{{ item.filename }} dest={{item.dest_path}}/{{ item.filename }}
   #~ with_items: "{{ services_enabled }}"
