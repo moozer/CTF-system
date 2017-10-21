@@ -1,9 +1,16 @@
-
-- name: copy files
-  copy: src="{{local_ctfd_dir}}/services/RabbitShare/src/" dest="{{ctfc_service_dir}}/RabbitShare"
+- debug: msg="rabbitshare files"
 
 - name: set config
-  template: src=templates/rabbitshare_config.php.j2 dest="{{ ctfc_service_dir }}/RabbitShare/config.php"
+  connection: local
+  become: no
+  template:
+    src: templates/rabbitshare_config.php.j2
+    dest: "{{local_ctfd_dir}}/services/RabbitShare/src/config.php"
+
+- name: copy files
+  copy:
+    src: "{{local_ctfd_dir}}/services/RabbitShare/src/"
+    dest: "{{ctfc_service_dir}}/RabbitShare"
 
 - name: create upload dir
   file: path="{{ ctfc_service_dir }}/RabbitShare/upload"
@@ -12,4 +19,3 @@
 - name: change ownership
   file: path="{{ ctfc_service_dir }}/RabbitShare"
         owner=www-data group=www-data recurse=true
-

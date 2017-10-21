@@ -7,34 +7,38 @@
   - defaults/services.yml
   tags: always
 
-- name: include basesystem
-  include: basesystem.yml
-  when: include_basesystem
+- include: users.yml
   become: yes
-  tags: basesystem
+  tags: system
 
-- name: include ctfd system part
-  include: ctfd-system.yml
-  when: include_ctfd
+- include: install_packages.yml
   become: yes
+  tags: system
 
-- name: include ctfd userspace part
-  include: userspace.yml
-  when: include_ctfd
-  tags: userspace
+- block:
+  - debug: msg="install ctf client and server - system"
 
-- name: include ctfc system part
-  include: ctfc-system.yml
-  when: include_ctfc
+  - include: ctfd-system.yml
+    when: include_ctfd
+
+  - include: ctfc-system.yml
+    when: include_ctfc
   become: yes
-  
+  tags: system
+
 - name: include ctfc local part
   include: ctfc-local.yml
+  when: include_ctfd
   become: no
-  when: include_ctfc
-  
-- name: include ctfc userspace part
-  include: ctfc-userspace.yml
-  when: include_ctfc
-  tags: userspace
 
+- block:
+  - debug: msg="install ctf client and server - userspace"
+
+  - include: ctfd-userspace.yml
+    when: include_ctfd
+
+  - include: ctfc-userspace.yml
+    when: include_ctfc
+  become_user: "{{ ctf_user }}"
+  become: no
+  tags: userspace

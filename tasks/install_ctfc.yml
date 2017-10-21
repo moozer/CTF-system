@@ -1,0 +1,13 @@
+- name: include ctfc system part
+  include: ctfc-system.yml
+  become: yes
+  tags: system
+
+- name: include ctfc local part
+  include: ctfc-local.yml
+  become: no
+
+- name: include ctfc userspace part
+  include: ctfc-userspace.yml
+  become: no
+  tags: userspace

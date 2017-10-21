@@ -11,6 +11,21 @@
   tags: basesystem
 
 - name: remove old apt.conf
-  file: dest=/etc/apt/apt.conf state=absent 
+  file: dest=/etc/apt/apt.conf state=absent
   tags: basesystem
 
+- name: apt-update when old
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+  tags: basesystem
+
+- name: setting repos
+  template: src=sources.list dest=/etc/apt/sources.list
+  register: apt_repo_update
+  tags: basesystem
+
+- name: updating all packages
+  apt: update_cache=yes
+  when: apt_repo_update.changed
+  tags: basesystem

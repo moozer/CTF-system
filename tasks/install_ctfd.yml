@@ -1,0 +1,7 @@
+- include: ctfd-system.yml
+  become: yes
+  tags: system
+
+- include: ctfd-userspace.yml
+  become: no
+  tags: userspace

@@ -2,7 +2,8 @@
 # disable if you configure apt elsewhere
 include_basesystem: true
 include_ctfd: true
-aptproxyserver: configserver01
+#aptproxyserver: configserver01
+aptproxyserver: ""
 
 # the user that runs the ctfd service and the game client user
 # if you do "become: yes" in the playbook, this will be root, so it must be set manually.
@@ -22,13 +23,14 @@ ctf_gameserver_hostname: gameserver
 
 # git repo to pull ctfd files from
 ctfd_git_repo: https://github.com/moozer/CTFd.git
+ctfd_git_version: master
 
 # relevant directories
 ctfd_base: /opt/CTFd
 ctfd_local: CTFd_local
 
 # check and plant intervals in ms
-ctfd_check_interval: 10000 
+ctfd_check_interval: 10000
 ctfd_plant_interval: 60000
 
 # this must match the clients...
@@ -59,11 +61,11 @@ services_enabled:
 - "{{ bashtard }}"
 
 # service definitions
-#~ bashtard: 
+#~ bashtard:
   #~ name: bashtard
   #~ src_path: "{{ local_ctfd_dir }}/services/Bashtard/src"
   #~ dest_path: "{{ ctfc_service_dir }}"
   #~ filename: bashtard.sh
   #~ port: 9898
   #~ manifest: "{{ ctfd_base }}/services/Bashtard/Manifest.json"
-#~ 
+#~

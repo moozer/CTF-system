@@ -1,18 +1,6 @@
 # install a usable base system.
 # disable if you already have a "common" role for your environment
 
-  
-- name: setting repos
-  template: src=sources.list dest=/etc/apt/sources.list
-
-- name: updating all packages
-  apt: update_cache=yes cache_valid_time=3600
-
-- name: install "base" packages
-  apt: name={{ item }} state=present 
-  with_items:
-  - git
-  - ntpdate
 
 - name: Set user default password
   user: name={{ ctf_user }} password={{ ctf_user_pass }}

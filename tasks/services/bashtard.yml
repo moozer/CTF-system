@@ -6,11 +6,13 @@
   - xinetd
 
 - name: copy files
-  copy: src="{{local_ctfd_dir}}/services/Bashtard/src/" dest="{{ctfc_service_dir}}/Bashtard"
+  copy:
+    src: "{{local_ctfd_dir}}/services/Bashtard/src/"
+    dest: "{{ctfc_service_dir}}/Bashtard"
 
 - name: add xinetd services
   template: src=xinetd-services.j2 dest=/etc/xinetd.d/{{item.name}}
-  with_items: 
+  with_items:
   - "{{ Bashtard }}"
   tags: services
   notify: restart xinetd
@@ -21,8 +23,7 @@
     line="{{ item.name }}   {{ item.port }}/tcp"
     state=present
     insertafter=EOF
-  with_items: 
+  with_items:
   - "{{ Bashtard }}"
   tags: services
   notify: restart xinetd
-

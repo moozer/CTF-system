@@ -11,6 +11,6 @@
             mode=755 owner=root group=root
   notify: restart apache
 
-- name: diable ipv6 for apache
+- name: disable ipv6 for apache
   template: src=templates/port.conf.j2 dest=/etc/apache2/port.conf
   notify: restart apache

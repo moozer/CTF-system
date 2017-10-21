@@ -2,25 +2,24 @@
 
 - hosts: gameserver
   user: vagrant
-  become: yes
 
   roles:
+  - { role: basesystem, become: yes }
   - ctfd-server
 
 - hosts: gameclient??
   user: vagrant
-  become: yes
 
   vars:
     run_tests: true
-  
+
   roles:
-  - basesystem
-  - { role: ctfd-server, include_ctfc: true, include_ctfd: false } 
+  - { role: basesystem, become: yes }
+  - { role: ctfd-server, include_ctfc: true, include_ctfd: false }
 
   #~ post_tasks:
   #~ - meta: flush_handlers
-  #~ 
+  #~
   #~ - name: do tests
     #~ include: tests.yml
     #~ when: run_tests
