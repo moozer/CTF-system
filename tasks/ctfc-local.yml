@@ -1,12 +1,14 @@
 # tasks to be run on the ansible machine
+- debug: msg="ctfc-local"
 
-  - name: create temp directory
-    file: path={{ local_temp_dir }} state=directory
-    connection: local
+- name: create temp directory
+  file: path={{ local_temp_dir }} state=directory
+  connection: local
 
-  - name: pull CTFd locally
-    connection: local
-    git: repo="{{ ctfd_git_repo }}"
-         dest="{{ local_ctfd_dir }}"
-         update=no
-    
+- name: "pull CTFd locally to {{ local_ctfd_dir }}"
+  connection: local
+  git:
+    repo: "{{ ctfd_git_repo }}"
+    dest: "{{ local_ctfd_dir }}"
+    update: no
+    version: "{{ ctfd_git_version }}"

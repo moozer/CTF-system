@@ -23,6 +23,7 @@ ctf_gameserver_hostname: gameserver
 
 # git repo to pull ctfd files from
 ctfd_git_repo: https://github.com/moozer/CTFd.git
+ctfd_git_version: master
 
 # relevant directories
 ctfd_base: /opt/CTFd
