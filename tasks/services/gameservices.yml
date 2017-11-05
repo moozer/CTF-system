@@ -1,5 +1,5 @@
 
-# comman config
+# command config
 - name: include apache config
   include: apache.yml
   when: RabbitShare.enable
@@ -7,9 +7,15 @@
 - name: install rc.local
   template: src=rc.local.j2 dest=/etc/rc.local
             mode=755 owner=root group=root
-  notify: run rc.local
-  when: PythonOnPills.enable
+  notify: restart rc.local
 
+- name: create rc.local systemd service
+  template:
+    src: rc-local.service.j2
+    dest: /etc/systemd/system/rc-local.service
+
+- name: enable rc.local as systemd service
+  service: name=rc.local enabled=yes
 
 # services
 - name: include bashtard

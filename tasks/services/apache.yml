@@ -12,5 +12,6 @@
   notify: restart apache
 
 - name: disable ipv6 for apache
-  template: src=templates/port.conf.j2 dest=/etc/apache2/port.conf
+  template: src=templates/port.conf.j2 dest=/etc/apache2/ports.conf
+  when: apache_disable_ipv6
   notify: restart apache

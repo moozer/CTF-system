@@ -1,12 +1,13 @@
+#!/bin/bash
 
-
+# might be empty, depending on enabled services...
 {% if GraphicusMaximus.enable %}
 cd /opt/services/GraphicusMaximus && sudo -u graphicus screen -dmS GraphicusMaximus java -jar graphicus_maximus.jar 9988 'jdbc:mysql://localhost/graphicus?user=root&password=blar'
 {% endif %}
 
 {% if TicTacToe.enable %}
 sudo -u tictactoe screen -dmS TicTacToe_userd /opt/services/TicTacToe/run.sh userd.rb
-sudo -u tictactoe screen -dmS TicTacToe_userd /opt/services/TicTacToe/run.sh tttd.rb 
+sudo -u tictactoe screen -dmS TicTacToe_userd /opt/services/TicTacToe/run.sh tttd.rb
 {% endif %}
 
 {% if Wizard.enable %}
