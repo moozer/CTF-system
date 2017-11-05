@@ -17,6 +17,8 @@ run_tests: false
 
 
 ctf_gameserver_hostname: gameserver
+apache_disable_ipv6: False
+
 #
 # -- gameserver part
 #
